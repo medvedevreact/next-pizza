@@ -9,8 +9,8 @@ interface CategoriesProps {
 }
 
 const categories = [
-  { id: 0, name: "Все" },
-  { id: 1, name: "Мясные" },
+  { id: 0, name: "Пиццы" },
+  { id: 1, name: "Завтраки" },
   { id: 2, name: "Острые" },
   { id: 3, name: "Сладкие" },
   { id: 4, name: "Вегетарианские" },

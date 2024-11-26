@@ -86,7 +86,7 @@ export default function Home() {
       <Container className="mt-5">
         <div className="sticky top-0 bg-white pb-[16px] z-10 mb-10  border-b border-gray-200 ">
           <Title
-            text="Все пиццы"
+            text="Все категории"
             size="2xl"
             className="font-extrabold mb-4"
           ></Title>
