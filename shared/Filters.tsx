@@ -1,7 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Title } from "./Title";
-import { FilterCheckbox } from "./FilterCheckbox";
 import { Input } from "@/components/ui/input";
 import { RangeSlider } from "./Range-slider";
 import { RadioGroupItem } from "@/components/ui/radio-group";
@@ -13,14 +12,6 @@ interface FiltersProps {
   className?: string;
 }
 
-const checkboxes = [
-  "Сырный соус",
-  "Моцарелла",
-  "Огурчики",
-  "Чеснок",
-  "Помидоры",
-];
-
 export const Filters = ({ className }: FiltersProps) => {
   return (
     <div className={cn(className)}>
@@ -29,10 +20,10 @@ export const Filters = ({ className }: FiltersProps) => {
         <Title className="mb-5" text="Фильтрация" size="lg"></Title>
       </b>
 
-      <FilterCheckbox className="mb-2" text="Можно собирать" value="1" />
-      <FilterCheckbox className="mb-2" text="Новинки" value="2" />
+      {/* <FilterCheckbox className="mb-2" text="Можно собирать" value="1" />
+      <FilterCheckbox className="mb-2" text="Новинки" value="2" /> */}
 
-      <div className="mt-5 border-y border-y-neutral-100 py-6 mb-5">
+      <div className="mt-5 border-b border-y-neutral-100 py-6 mb-5">
         <b>
           {" "}
           <Title className="mb-5" text="Цена от и до:" size="sm"></Title>
@@ -51,7 +42,7 @@ export const Filters = ({ className }: FiltersProps) => {
           <Title className="mb-5" text="Ингредиенты" size="sm"></Title>
         </b>
 
-        <FilterCheckboxGroup checkboxes={checkboxes} initialLimit={4} />
+        <FilterCheckboxGroup initialLimit={4} />
       </div>
 
       <div className="mt-5 py-3">

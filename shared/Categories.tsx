@@ -6,17 +6,10 @@ import { useCategory } from "@/store/category";
 
 interface CategoriesProps {
   className?: string;
+  categories: any[];
 }
 
-const categories = [
-  { id: 0, name: "Пиццы" },
-  { id: 1, name: "Завтраки" },
-  { id: 2, name: "Острые" },
-  { id: 3, name: "Сладкие" },
-  { id: 4, name: "Вегетарианские" },
-];
-
-export const Categories = ({ className }: CategoriesProps) => {
+export const Categories = ({ className, categories }: CategoriesProps) => {
   const { activeId } = useCategory();
 
   return (
@@ -30,7 +23,7 @@ export const Categories = ({ className }: CategoriesProps) => {
           className={cn(
             "px-5 rounded-sm cursor-pointer",
             category.id === activeId
-              ? "bg-white text-black shadow-sm"
+              ? "bg-white text-orange-500 shadow-md"
               : "bg-gray-200"
           )}
         >

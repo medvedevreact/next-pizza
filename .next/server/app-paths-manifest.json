@@ -1,4 +1,6 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js"
+  "/api/ingredients/route": "app/api/ingredients/route.js",
+  "/(root)/page": "app/(root)/page.js",
+  "/(root)/@modal/(.)product/[id]/page": "app/(root)/@modal/(.)product/[id]/page.js",
+  "/(root)/@modal/[...catchAll]/page": "app/(root)/@modal/[...catchAll]/page.js"
 }

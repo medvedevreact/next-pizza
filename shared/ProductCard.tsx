@@ -7,8 +7,9 @@ import { Plus } from "lucide-react";
 interface Props {
   id: number;
   name: string;
-  price: number;
+
   imageUrl: string;
+  price: number;
 
   className?: string;
 }

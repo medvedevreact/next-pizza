@@ -32,7 +32,7 @@ export const ProductList = ({
   }, [intersection?.isIntersecting, title, categoryId]);
 
   return (
-    <div className="mb-[90px]" id={categoryId} ref={intersectionRef}>
+    <div className="pb-[160px]" id={categoryId} ref={intersectionRef}>
       {title && (
         <b>
           <Title text={title} size="lg" className="mb-4" />
@@ -44,8 +44,8 @@ export const ProductList = ({
             key={item.id}
             id={item.id}
             name={item.name}
-            price={item.price}
             imageUrl={item.imageUrl}
+            price={item.items[0].price}
           />
         ))}
       </div>

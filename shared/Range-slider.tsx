@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as SliderPrimitive from "@radix-ui/react-slider";
-
 import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type SliderProps = {
   className?: string;
@@ -31,11 +31,20 @@ const RangeSlider = React.forwardRef(
   ) => {
     const initialValue = Array.isArray(value) ? value : [min, max];
     const [localValues, setLocalValues] = React.useState(initialValue);
+    const [isLoading, setIsLoading] = useState(true);
 
-    React.useEffect(() => {
+    useEffect(() => {
       // Update localValues when the external value prop changes
       setLocalValues(Array.isArray(value) ? value : [min, max]);
     }, [min, max, value]);
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }, []);
 
     const handleValueChange = (newValues: number[]) => {
       setLocalValues(newValues);
@@ -43,6 +52,10 @@ const RangeSlider = React.forwardRef(
         onValueChange(newValues);
       }
     };
+
+    if (isLoading) {
+      return <Skeleton className="h-4 w-full" />; // Отображаем скелетон
+    }
 
     return (
       <SliderPrimitive.Root

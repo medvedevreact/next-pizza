@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
 import Link from "next/link";
+import { SearchInput } from "./SearchInput";
+import { CartButton } from "./CartButton";
 
 interface HeaderProps {
   className?: string;
@@ -31,14 +33,12 @@ export const Header = ({ className }: HeaderProps) => {
             </div>
           </div>
         </Link>
-
+        <SearchInput />
         <div className=" flex gap-1">
           <Button variant={"outline"}>
             <FaUser /> Войти
           </Button>
-          <Button variant={"outline"}>
-            <FaShoppingCart />
-          </Button>
+          <CartButton />
         </div>
       </Container>
     </header>
