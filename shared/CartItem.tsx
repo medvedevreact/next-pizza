@@ -64,7 +64,7 @@ export const CartDrawerItem: React.FC<Props> = ({
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-gray-700">${price.toFixed(2)}</span>
+            <span className="text-gray-700">₽ {price.toFixed(2)}</span>
             <Trash2Icon
               onClick={onClickRemove}
               className="text-gray-400 cursor-pointer hover:text-gray-600"

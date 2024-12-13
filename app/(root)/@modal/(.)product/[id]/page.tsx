@@ -3,10 +3,13 @@ import { ChooseProductModal } from "@/shared/modals/ChooseProductModal";
 import { notFound } from "next/navigation";
 
 export default async function ProductModalPage({
-  params: { id },
+  params,
 }: {
   params: { id: string };
 }) {
+  // Ожидаем params перед использованием его свойств
+  const { id } = await params;
+
   const product = await prisma.product.findFirst({
     where: {
       id: Number(id),

@@ -738,6 +738,9 @@ video {
 .h-12 {
   height: 3rem;
 }
+.h-16 {
+  height: 4rem;
+}
 .h-2 {
   height: 0.5rem;
 }
@@ -807,9 +810,6 @@ video {
 .h-px {
   height: 1px;
 }
-.h-16 {
-  height: 4rem;
-}
 .max-h-96 {
   max-height: 24rem;
 }
@@ -821,6 +821,9 @@ video {
 }
 .w-10 {
   width: 2.5rem;
+}
+.w-16 {
+  width: 4rem;
 }
 .w-3\.5 {
   width: 0.875rem;
@@ -884,9 +887,6 @@ video {
 }
 .w-full {
   width: 100%;
-}
-.w-16 {
-  width: 4rem;
 }
 .min-w-\[8rem\] {
   min-width: 8rem;
@@ -999,11 +999,11 @@ video {
 .gap-5 {
   gap: 1.25rem;
 }
-.gap-\[60px\] {
-  gap: 60px;
-}
 .gap-6 {
   gap: 1.5rem;
+}
+.gap-\[60px\] {
+  gap: 60px;
 }
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1029,6 +1029,9 @@ video {
 .whitespace-nowrap {
   white-space: nowrap;
 }
+.rounded {
+  border-radius: 0.25rem;
+}
 .rounded-3xl {
   border-radius: 1.5rem;
 }
@@ -1049,9 +1052,6 @@ video {
 }
 .rounded-sm {
   border-radius: calc(var(--radius) - 4px);
-}
-.rounded {
-  border-radius: 0.25rem;
 }
 .rounded-t-\[10px\] {
   border-top-left-radius: 10px;
@@ -1180,6 +1180,9 @@ video {
 .p-4 {
   padding: 1rem;
 }
+.p-5 {
+  padding: 1.25rem;
+}
 .p-6 {
   padding: 1.5rem;
 }
@@ -1189,12 +1192,13 @@ video {
 .p-8 {
   padding: 2rem;
 }
-.p-5 {
-  padding: 1.25rem;
-}
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+}
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 .px-3 {
   padding-left: 0.75rem;
@@ -1235,10 +1239,6 @@ video {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 }
 .pb-\[160px\] {
   padding-bottom: 160px;
@@ -1346,6 +1346,10 @@ video {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
 }
+.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+}
 .text-muted-foreground {
   color: hsl(var(--muted-foreground));
 }
@@ -1365,10 +1369,6 @@ video {
 }
 .text-primary-foreground {
   color: hsl(var(--primary-foreground));
-}
-.text-gray-700 {
-  --tw-text-opacity: 1;
-  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
 }
 .underline-offset-4 {
   text-underline-offset: 4px;
@@ -1566,13 +1566,13 @@ html {
   background-color: hsl(var(--secondary) / 0.5);
 }
 
-.hover\:text-secondary-foreground:hover {
-  color: hsl(var(--secondary-foreground));
-}
-
 .hover\:text-gray-600:hover {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-secondary-foreground:hover {
+  color: hsl(var(--secondary-foreground));
 }
 
 .hover\:underline:hover {
