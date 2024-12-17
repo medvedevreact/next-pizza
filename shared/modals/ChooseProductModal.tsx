@@ -39,7 +39,12 @@ export const ChooseProductModal: React.FC<ChooseProductModalProps> = ({
             ingredients={product.ingredients}
           />
         ) : (
-          <ChooseProductForm name={product.name} imageUrl={product.imageUrl} />
+          <ChooseProductForm
+            name={product.name}
+            imageUrl={product.imageUrl}
+            id={product.id}
+            items={product.items}
+          />
         )}
       </DialogContent>
     </Dialog>

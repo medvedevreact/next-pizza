@@ -1,3 +1,4 @@
+import { Providers } from "@/shared/Proviers";
 import "./globals.css";
 import { Nunito } from "next/font/google";
 
@@ -17,7 +18,9 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/img/Логотип.png" />
       </head>
-      <body className={nunito.className}>{children}</body>
+      <body className={nunito.className}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

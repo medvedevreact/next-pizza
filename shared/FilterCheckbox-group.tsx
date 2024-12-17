@@ -10,19 +10,18 @@ import { Skeleton } from "@/components/ui/skeleton";
 interface FilterCheckboxGroupProps {
   className?: string;
   initialLimit: number;
+  handleIngredientChange: (ingredient: string, checked: boolean) => void;
 }
 
 export const FilterCheckboxGroup = ({
   className,
   initialLimit,
+  handleIngredientChange,
 }: FilterCheckboxGroupProps) => {
   const [limit, setLimit] = useState(initialLimit);
   const [showAll, setShowAll] = useState(false);
   const [checkboxes, setCheckboxes] = useState<Ingredient[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState<Set<string>>(
-    new Set()
-  );
 
   const handleShowMore = () => {
     setLimit(checkboxes.length);
@@ -32,18 +31,6 @@ export const FilterCheckboxGroup = ({
   const handleShowLess = () => {
     setLimit(initialLimit);
     setShowAll(false);
-  };
-
-  const handleCheckboxChange = (value: string, checked: boolean) => {
-    setSelectedCheckboxes((prevSelected) => {
-      const newSelected = new Set(prevSelected);
-      if (checked) {
-        newSelected.add(value);
-      } else {
-        newSelected.delete(value);
-      }
-      return newSelected;
-    });
   };
 
   useEffect(() => {
@@ -69,14 +56,13 @@ export const FilterCheckboxGroup = ({
           ))
         : checkboxes
             .slice(0, limit)
-            .map((checkbox: Ingredient, index: number) => (
+            .map((checkbox: Ingredient) => (
               <FilterCheckbox
+                key={checkbox.id}
                 text={checkbox.name}
-                key={index}
                 value={String(checkbox.id)}
-                checked={selectedCheckboxes.has(String(checkbox.id))}
-                onCheckedChange={(checked) =>
-                  handleCheckboxChange(String(checkbox.id), checked)
+                handleIngredientChange={(checked) =>
+                  handleIngredientChange(String(checkbox.id), checked)
                 }
               />
             ))}

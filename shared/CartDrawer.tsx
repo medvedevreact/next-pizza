@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { CartDrawerItem } from "./CartItem";
 import { useCartStore } from "@/store/cart";
+import toast from "react-hot-toast";
 
 const pizzaSize: Variant[] = [
   { name: "Маленькая", value: "20" },
@@ -27,33 +28,40 @@ const pizzaType: Variant[] = [
 ];
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const { items, totalAmount, fetchCartItems, loading, error } = useCartStore();
+  const {
+    items,
+    totalAmount,
+    fetchCartItems,
+
+    error,
+    updateItemQuantity,
+    removeCartItem,
+  } = useCartStore();
 
   useEffect(() => {
     fetchCartItems();
   }, [fetchCartItems]);
 
-  if (loading) return <div>Loading...</div>;
+  // if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading cart items.</div>;
-  console.log(items);
 
   const getDetails = (item) => {
-    const sizeName = pizzaSize.find(
-      (size) => size.value === item.pizzaSize.toString()
+    const sizeName = pizzaSize?.find(
+      (size) => size.value === item.pizzaSize?.toString()
     )?.name;
-    const typeName = pizzaType.find(
-      (type) => type.value === item.type.toString()
+    const typeName = pizzaType?.find(
+      (type) => type.value === item.type?.toString()
     )?.name;
-    const ingredientsNames = item.ingredients
-      .map((ingredient) => ingredient.name)
+    const ingredientsNames = item?.ingredients
+      .map((ingredient) => ingredient?.name)
       .join(", ");
     return (
       <>
-        Размер: {sizeName}
+        Размер: {sizeName || "-"}
         <br />
-        Тип теста: {typeName}
+        Тип теста: {typeName || "-"}
         <br />
-        Ингредиенты: {ingredientsNames}
+        Ингредиенты: {ingredientsNames || "-"}
       </>
     );
   };
@@ -78,10 +86,19 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
               quantity={item.quantity}
               details={getDetails(item)}
               onClickCountButton={(type) => {
-                console.log(`Button ${type} clicked for item ${item.name}`);
+                const newQuantity =
+                  type === "plus" ? item.quantity + 1 : item.quantity - 1;
+                updateItemQuantity(item.id, newQuantity);
               }}
-              onClickRemove={() => {
-                console.log(`Remove clicked for item ${item.name}`);
+              onClickRemove={async () => {
+                try {
+                  await removeCartItem(item.id);
+                  toast.success("Элемент успешно удален из корзины!");
+                } catch (error) {
+                  toast.error(
+                    "Удаление не удалось. Пожалуйста, повторите попытку."
+                  );
+                }
               }}
               className="mb-4"
             />

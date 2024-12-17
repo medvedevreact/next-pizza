@@ -1,31 +1,34 @@
 import React from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
+import useFilters from "@/store/filters";
 
-export interface FilterChecboxProps {
+export interface FilterCheckboxProps {
   text: string;
   value: string;
   endAdornment?: React.ReactNode;
-  onCheckedChange?: (checked: boolean) => void;
-  checked?: boolean;
   name?: string;
   className?: string;
+  handleIngredientChange: (checked: boolean) => void;
 }
 
-export const FilterCheckbox: React.FC<FilterChecboxProps> = ({
+export const FilterCheckbox: React.FC<FilterCheckboxProps> = ({
   text,
   value,
   endAdornment,
-  onCheckedChange,
-  checked,
   name,
   className,
+  handleIngredientChange,
 }) => {
+  const { ingredients } = useFilters();
+
+  const isChecked = ingredients.includes(value);
+
   return (
     <div className="flex items-center space-x-2">
       <Checkbox
-        onCheckedChange={onCheckedChange}
-        checked={checked}
+        onCheckedChange={handleIngredientChange}
+        checked={isChecked}
         value={value}
         className={cn("rounded-[8px] w-6 h-6", className)}
         id={`checkbox-${String(name)}-${String(value)}`}

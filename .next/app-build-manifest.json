@@ -22,20 +22,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(root)/@modal/default.js"
     ],
-    "/api/ingredients/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/ingredients/route.js"
-    ],
-    "/(root)/@modal/(.)product/[id]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(root)/@modal/(.)product/[id]/page.js"
-    ],
     "/api/cart/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/cart/route.js"
+    ],
+    "/api/ingredients/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/ingredients/route.js"
     ],
     "/(root)/@modal/[...catchAll]/page": [
       "static/chunks/webpack.js",

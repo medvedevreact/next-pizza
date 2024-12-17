@@ -8,6 +8,9 @@ import { Title } from "./Title";
 import { Button } from "@/components/ui/button";
 import { GroupVariants, Variant } from "./GroupVariants";
 import { IngredientItem } from "./Ingredient";
+import { useCartStore } from "@/store/cart";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface ChoosePizzaFormProps {
   className?: string;
@@ -16,7 +19,6 @@ interface ChoosePizzaFormProps {
   ingredients: Ingredient[];
   items: ProductItem[];
   loading?: boolean;
-  onSubmit: (itemId: number, ingredients: number[]) => void;
 }
 
 const pizzaSize: Variant[] = [
@@ -36,13 +38,15 @@ export const ChoosePizzaForm: React.FC<ChoosePizzaFormProps> = ({
   imageUrl,
   ingredients,
   loading,
-  onSubmit,
   name,
 }) => {
   const [selectedSize, setSelectedSize] = useState<string>("20");
   const [selectedType, setSelectedType] = useState<string>("1");
   const [selectedIngredients, setSelectedIngredients] = useState<number[]>([]);
   const [availableTypes, setAvailableTypes] = useState<Variant[]>(pizzaType);
+  const router = useRouter();
+
+  const { addCartItem } = useCartStore(); // Получаем функцию добавления товара в корзину из хранилища
 
   useEffect(() => {
     const updateAvailableTypes = () => {
@@ -94,6 +98,25 @@ export const ChoosePizzaForm: React.FC<ChoosePizzaFormProps> = ({
     );
   };
 
+  const handleSubmit = async () => {
+    const itemId = items.find(
+      (item) => item.pizzaType == selectedType && item.size == selectedSize
+    )?.id;
+
+    if (itemId) {
+      await addCartItem({
+        productItemId: itemId,
+        ingredients: selectedIngredients,
+      });
+      toast.success("Элемент успешно добавлен в корзину!");
+      router.back();
+    } else {
+      toast.error(
+        "Добавление в корзину не удалось. Пожалуйста, повторите попытку."
+      );
+    }
+  };
+
   return (
     <div className={cn(className, "flex flex-1")}>
       <div className="flex items-center justify-center flex-1 relative w-full">
@@ -130,7 +153,7 @@ export const ChoosePizzaForm: React.FC<ChoosePizzaFormProps> = ({
         <Button
           loading={loading}
           className="h-[55px] px-10 text-base rounded-[18px] w-full mt-6"
-          onClick={() => onSubmit(items[0].id, selectedIngredients)}
+          onClick={handleSubmit}
         >
           Добавить в корзину за {totalPrice} ₽
         </Button>

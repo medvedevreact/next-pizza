@@ -22,15 +22,11 @@ export default function HomeLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={nunito.className}>
-        <main className="min-h-screen">
-          {" "}
-          <Header />
-          {children}
-          {modal}
-        </main>
-      </body>
-    </html>
+    <main className="min-h-screen">
+      {" "}
+      <Header />
+      {children}
+      {modal}
+    </main>
   );
 }
